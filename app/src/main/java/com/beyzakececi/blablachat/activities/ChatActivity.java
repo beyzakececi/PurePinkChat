@@ -5,13 +5,17 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
 
 import com.beyzakececi.blablachat.adapters.ChatAdapter;
 import com.beyzakececi.blablachat.databinding.ActivityChatBinding;
 import com.beyzakececi.blablachat.models.ChatMessage;
 import com.beyzakececi.blablachat.models.User;
+import com.beyzakececi.blablachat.network.ApiClient;
+import com.beyzakececi.blablachat.network.ApiService;
 import com.beyzakececi.blablachat.utilities.Constants;
 import com.beyzakececi.blablachat.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +26,10 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,8 +37,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
-public class ChatActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ChatActivity extends BaseActivity {
 
     private ActivityChatBinding binding;
     private User receiverUser;
@@ -39,6 +52,7 @@ public class ChatActivity extends AppCompatActivity {
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
     private String conversionId= null;
+    private Boolean isReceiverAvailable =false;
 
 
     @Override
@@ -81,12 +95,40 @@ public class ChatActivity extends AppCompatActivity {
             conversion.put(Constants.KEY_SENDER_IMAGE,preferenceManager.getString(Constants.KEY_IMAGE));
             conversion.put(Constants.KEY_RECEIVER_ID,receiverUser.id);
             conversion.put(Constants.KEY_RECEIVER_NAME,receiverUser.name);
-            conversion.put(Constants.KEY_IMAGE,receiverUser.image);
+            conversion.put(Constants.KEY_RECEIVER_IMAGE,receiverUser.image);
             conversion.put(Constants.KEY_LAST_MESSAGE,binding.inputMessage.getText().toString());
             conversion.put(Constants.KEY_TIMESTAMP,new Date());
             addConversion(conversion);
         }
+
         binding.inputMessage.setText(null);
+    }
+
+
+
+    private void listenAvailabilityOfReceiver(){
+        database.collection(Constants.KEY_COLLECTION_USERS).document(
+                receiverUser.id
+        ).addSnapshotListener(ChatActivity.this,(value,error)->{
+            if(error!=null){
+                return;
+            }
+            if (value!=null){
+                if(value.getLong(Constants.KEY_AVAILABILITY)!=null){
+                    int availability= Objects.requireNonNull(
+                            value.getLong(Constants.KEY_AVAILABILITY)
+                    ).intValue();
+                    isReceiverAvailable= availability==1;
+                }
+                receiverUser.token=value.getString(Constants.KEY_FCM_TOKEN);
+            }
+            if (isReceiverAvailable){
+                binding.textAvailability.setVisibility(View.VISIBLE);
+            }
+            else{
+                binding.textAvailability.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void listenMessage(){
@@ -137,8 +179,10 @@ public class ChatActivity extends AppCompatActivity {
 
 
     private Bitmap getBitmapFromEncodedString(String encodedImage) {
-        byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+            byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
     }
 
     private void loadReceiverDetails() {
@@ -200,4 +244,9 @@ public class ChatActivity extends AppCompatActivity {
     };
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listenAvailabilityOfReceiver();
+    }
 }

@@ -84,7 +84,23 @@
         app:layout_constraintTop_toBottomOf="@id/imageBack">
 
     </View>
-    
+
+    <TextView
+        android:id="@+id/textAvailability"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#008000"
+        android:padding="@dimen/_2sdp"
+        android:text="@string/online"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10ssp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/viewSupporter"
+
+        ></TextView>
+
+
 
     
     <androidx.recyclerview.widget.RecyclerView
@@ -99,7 +115,8 @@
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@id/viewBackground"
-        app:layout_constraintTop_toBottomOf="@id/viewSupporter">
+        app:layout_constraintTop_toBottomOf="@id/textAvailability"
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -132,7 +149,7 @@
         android:layout_marginLeft="@dimen/_4sdp"
         android:padding="@dimen/_8sdp"
         android:src="@drawable/ic_send"
-        android:tint="@color/white"
+        android:tint="#cd3278"
 
 ></androidx.appcompat.widget.AppCompatImageView>
     </FrameLayout>
@@ -161,5 +178,9 @@
 
 
         ></EditText>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

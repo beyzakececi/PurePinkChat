@@ -17,21 +17,20 @@
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_marginTop="@dimen/_140sdp"
-            android:src="@drawable/speechbubbles"
             android:contentDescription="@string/app_name"
-            />
+            android:src="@drawable/speechbubbles" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/app_name"
-            android:textColor="@color/cardview_dark_background"
+            android:textColor="#ee3a8c"
             android:textSize="40sp"
             android:textStyle="bold">
 
         </TextView>
-        
+
         <ProgressBar
             android:layout_width="32dp"
             android:layout_height="wrap_content">

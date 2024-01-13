@@ -3,7 +3,7 @@
   <component name="deploymentTargetDropDown">
     <targetSelectedWithDropDown>
       <Target>
-        <type value="COLD_BOOT_TARGET" />
+        <type value="QUICK_BOOT_TARGET" />
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
@@ -12,7 +12,7 @@
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2024-01-13T11:05:55.465584600Z" />
+    <timeTargetWasSelectedWithDropDown value="2024-01-13T17:10:29.864428Z" />
     <targetsSelectedWithDialog>
       <Target>
         <type value="QUICK_BOOT_TARGET" />
@@ -28,7 +28,7 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\Beyza\.android\avd\Pixel_4_API_30.avd" />
+            <value value="C:\Users\Beyza\.android\avd\Copy_of_Pixel_3a_API_30.avd" />
           </Key>
         </deviceKey>
       </Target>

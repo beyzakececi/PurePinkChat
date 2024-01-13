@@ -57,11 +57,9 @@ public class RecentConversationsAdapter extends  RecyclerView.Adapter<RecentConv
         }
 
         void setData(ChatMessage chatMessage){
-            if (chatMessage.conversionImage != null) {
-                binding.imageProfile.setImageBitmap(getConversionImage(chatMessage.conversionImage));
-            } else {
-                return;
-            }
+
+            binding.imageProfile.setImageBitmap(getConversionImage(chatMessage.conversionImage));
+
             binding.textName.setText(chatMessage.conversionName);
             binding.textRecentMessage.setText(chatMessage.message);
 
@@ -91,5 +89,14 @@ public class RecentConversationsAdapter extends  RecyclerView.Adapter<RecentConv
         // Handle the case where encodedImage is null or empty
         return null;
     }
+
+    /*
+
+    private Bitmap getConversionImage(String encodedImage) {
+         byte[] bytes= Base64.decode(encodedImage,Base64.DEFAULT);
+         return BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+    }
+
+    */
 
 }
