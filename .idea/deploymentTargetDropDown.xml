@@ -4,26 +4,37 @@
     <value>
       <entry key="app">
         <State>
-          <targetSelectedWithDropDown>
+          <runningDeviceTargetSelectedWithDropDown>
             <Target>
-              <type value="QUICK_BOOT_TARGET" />
+              <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\Beyza\.android\avd\Pixel_3a_API_30.avd" />
+                  <value value="C:\Users\Beyza\.android\avd\Pixel_3a_XL_API_30.avd" />
                 </Key>
               </deviceKey>
             </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-31T11:40:42.359600500Z" />
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-05-26T16:59:52.970478500Z" />
           <multipleDevicesSelectedInDropDown value="true" />
+          <runningDeviceTargetsSelectedWithDialog>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\Beyza\.android\avd\Pixel_3a_XL_API_30.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetsSelectedWithDialog>
           <targetsSelectedWithDialog>
             <Target>
-              <type value="COLD_BOOT_TARGET" />
+              <type value="QUICK_BOOT_TARGET" />
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\Beyza\.android\avd\Pixel_3a_API_30.avd" />
+                  <value value="C:\Users\Beyza\.android\avd\Pixel_3a_XL_API_30.avd" />
                 </Key>
               </deviceKey>
             </Target>
@@ -32,7 +43,7 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\Beyza\.android\avd\Pixel_4_API_30.avd" />
+                  <value value="C:\Users\Beyza\.android\avd\Pixel_3a_XL_API_30_2.avd" />
                 </Key>
               </deviceKey>
             </Target>

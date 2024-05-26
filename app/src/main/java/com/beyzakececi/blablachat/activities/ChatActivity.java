@@ -281,6 +281,7 @@ public class ChatActivity extends BaseActivity {
         );
     }
 
+
     private void checkForConversion(){
         if(chatMessages.size()!= 0){
             checkForConversionRemotely(
